@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Immaq 😉</title>
+    <style>
+        body{
+            background-color: #0f0a0a;
+            font-family: arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h2{
+            font-size: 1.5em;
+            color: #ff8080;
+        }
+      
+        button{
+            background-color: #922020;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover{
+            background-color: #6a1515;
+        }
+        #message{
+            margin-top: 30px;
+            font-size: 1em;
+            color: #ff8080;
+            background-color: #1c0e0e;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            border: 1px solid #922020;
+        }
+        @media(max-width: 600px){
+            h2{
+                font-size: 2em;
+            }
+            button{
+                width: 90%;
+                font-size: 1em;
+            }
+            #message{
+                font-size: 1.2em;
+                padding: 15px;
+            }
+        }
+            .balloons{
+                font-size: 2em;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            .balloon{
+                font-size: 2em;
+                cursor: pointer;
+                display: inline-block;
+                animation: float 3s ease-in-out infinite;
+                transition: transform 0.1s;
+            }
+            .balloon:hover{
+                transform:scale(1.2);
+                
+            }
+            @keyframes float{
+                0% {transform: translateY(0px);}
+                50%{transform: translateY(-20px);}
+                100%{transform: translateY(0px);}
+            }
+            
+        
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <h2> Endelea kuzeeka kabisa utasema unaenda wapi 💕🎂💐</h2>
+  <div class="balloons" id="balloonContainer"></div>
+  
+  <audio id="birthdaySound" src="https://www.soundjay.com/misc/sounds/birthday-1.mp3"></audio>
+  <button onclick="revealMessage()">Click to open your surprise!🎁</button>
+  <div id="message" style="display:none;">
+    <p>At this point I don't need to tell you how much I love you seeing as you're the only sister 
+        I have in this lifetime but also in another lifetime I wouldn't mind. I'll 
+        always cherish the moments that I have with you and through everything I'll be 
+        by your side. And if you get anyone who loves you more than me 
+        just know they are lying. Let me kumbusha you remember kitamboo how we used to fight
+         and you'd always win, one day we'll have
+        to we'll take it to the boxing ring and know who's better and there won't any rules. 
+        Also I know it's been long since we had a kanice chat but we need to change that
+        hata kama we will bond over a glass of water me I'm okay na I dont know about you but 
+        lazma tu ukue sawa nayo. Naeza endelea kuandika but sitaki kukuboo but just 
+        know I love you and that's all that matters. Also najua hii kitu haibambi sana lakini
+        it's the thought that counts.
+    </p>
+
+    <div class="msg-footer">.... Love you always, the pretty sister 😁</div>
+  </div>
+  <script>
+    const messages = [
+      'Hio miaka yote 😭',
+      '23!!!!!',
+      'Nakupenda 😘',
+      'Niekee hata ya cabbage 🥲',
+      'Shieee ❤️',
+      'Mungu Akubariki na pesa mingi ndio unitumie 💸',
+      'Nikiomoka nitakuspoil 🤞',
+      'Mention kitu unataka na utapata',
+      'Wewe ni special sana 🌟',
+      'Usisahau kulewa kidogo leo 🥂',
+      'You made it to 23, respect 🙌',
+      'Siku yako hii, enjoy fully 🎉',
+      'Bado mzee kidogo 😂',
+      'Nakukumbuka kila siku ❤️',
+      'Usiende mbali sana 🥺',
+      'Tuzidi kukua pamoja 🌱',
+      'Mwaka huu ni wako 🔥',
+      'Usijali chochote leo 😎',
+      'Penda nafsi yako kwanza 💙',
+      'Unaendelea kupendeza 😍',
+      'Hii birthday ni different 🎂',
+      'Tutafika juu pamoja 🚀',
+      'Happy 23rd, Immaq! 🎈'
+    ];
+
+    // Shuffle numbers 1–23
+    const numbers = Array.from({length: 23}, (_, i) => i + 1);
+    for (let i = numbers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+
+    const container = document.getElementById('balloonContainer');
+    numbers.forEach((num, index) => {
+      const delay = (index * 0.3) % 3;
+      const span = document.createElement('span');
+      span.className = 'balloon';
+      span.style.animationDelay = delay + 's';
+      span.innerHTML = `<span style="display:block; font-size:0.45em; color:#ff8080; font-weight:bold; margin-bottom:-8px;">${num}</span>🎈`;
+      span.onclick = function() { popBalloon(this, messages[index]); };
+      container.appendChild(span);
+    });
+
+    function launchConfetti(){
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#ff8080', '#922020', '#fff', '#e04040', '#ffe0e0']
+      });
+    }
+    function popBalloon(balloon, message){
+      balloon.innerHTML = `<span style="font-size:0.4em; color:#ff8080; font-weight:bold;">${message}</span>`;
+      balloon.style.animation = "none";
+    }
+    function revealMessage(){
+      const msg = document.getElementById('message');
+      msg.style.display = 'block';
+      launchConfetti();
+      const sound = document.getElementById('birthdaySound');
+      sound.play().catch(() => {});
+    }
+  </script>
+</body>
+</html>
